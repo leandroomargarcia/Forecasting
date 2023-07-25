@@ -31,7 +31,7 @@ def main():
 
     @st.cache_resource()
     def load_data():
-        data = pd.read_csv('C:/Users/O003132/Downloads/data.csv')
+        data = pd.read_csv('C:/Users/O003132/Desktop/data.csv')
         label = LabelEncoder()
         for col in data.columns:
             data[col] = label.fit_transform(data[col])
