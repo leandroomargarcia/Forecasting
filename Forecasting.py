@@ -1,22 +1,17 @@
 import subprocess
-# Verificar si la biblioteca está instalada
+
 try:
     import matplotlib.pyplot as plt
 except ImportError:
-    # La biblioteca no está instalada, se procede a instalarla
     subprocess.check_call(['pip', 'install', 'matplotlib'])
+
 import streamlit as st
-import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import seaborn as sns
-import plotly.express as px
-from sklearn.metrics import mean_absolute_error, mean_squared_error,r2_score
-from math import sqrt
-from statsmodels.tsa.arima_model import ARIMA                  # modelo ARIMA
-from statsmodels.tsa.statespace.sarimax import SARIMAX         # modelo SARIMAX
-from pylab import rcParams                                     # descomposicion de series temporales
-import statsmodels.api as sm                                   # modelos estadísticos
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from statsmodels.tsa.arima_model import ARIMA
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+import statsmodels.api as sm
 from sklearn.preprocessing import LabelEncoder
 from scipy.stats import boxcox
 
@@ -29,15 +24,15 @@ def main():
     st.markdown("What's the future of the music?")
     st.sidebar.markdown("What's the future of the music")
 
-    @st.cache_resource()
+    @st.cache
     def load_data():
-        data = pd.read_csv('C:/Users/O003132/Desktop/data.csv')
+        data = pd.read_csv('data.csv')
         label = LabelEncoder()
         for col in data.columns:
             data[col] = label.fit_transform(data[col])
         return data
 
-    @st.cache_resource()  
+    @st.cache  
     def recortar_serie(data, percentage=(70, 30)):
         # Ordenar la serie cronológicamente
         serie_sorted = data.sort_index()
@@ -94,7 +89,7 @@ def main():
             df_normal = pd.Series(transformed_data, index=indx, name='col_normal')
 
             model = sm.tsa.arima.ARIMA(train, order=((0,1,1)))
-            result = model.fit()
+            result = model.fit(disp=0)
             forecast = result.forecast(len(test))
 
             RMSE = float(format(np.sqrt(mean_squared_error(test, forecast)),'.3f'))
@@ -107,10 +102,11 @@ def main():
             st.write("MAE: ", MAE)
             st.write("r2: ", r2)
 
-            plot_metrics(metrics, model, test)  
+            plot_metrics(metrics, model, df, train, test, forecast)
 
 if __name__ == '__main__':
     main() 
+
 
                      
             
