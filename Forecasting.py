@@ -88,9 +88,9 @@ def main():
             transformed_data = boxcox(col, lmbda=lmbda_value)
             df_normal = pd.Series(transformed_data, index=indx, name='col_normal')
     
-            model = sm.tsa.arima.ARIMA(train['en-dan'], order=((0, 1, 1)))
+            model = sm.tsa.arima.ARIMA(train, order=((0, 1, 1)))
             result = model.fit()
-            forecast = result.forecast(len(test['en-dan']))
+            forecast = result.forecast(len(test))
     
     
             RMSE = float(format(np.sqrt(mean_squared_error(test, forecast)),'.3f'))
