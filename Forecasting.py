@@ -89,7 +89,7 @@ def main():
             df_normal = pd.Series(transformed_data, index=indx, name='col_normal')
     
             model = sm.tsa.arima.ARIMA(train['en-dan'], order=((0, 1, 1)))
-            result = model.fit(disp=0)
+            result = model.fit()
             forecast = result.forecast(len(test['en-dan']))
     
     
