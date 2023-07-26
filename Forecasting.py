@@ -29,6 +29,7 @@ def main():
         label = LabelEncoder()
         for col in data.columns:
             data[col] = label.fit_transform(data[col])
+        data = pd.DataFrame(data)
         return data
 
     @st.cache_resource() 
@@ -82,14 +83,14 @@ def main():
             df = df.dropna()
             # Aplicar la transformación de Box-Cox a la columna a_transformar
             indx = df.index
-            col = df.values
+            col = df['en-dan']
             lmbda_value = 0.5
             transformed_data = boxcox(col, lmbda=lmbda_value)
             df_normal = pd.Series(transformed_data, index=indx, name='col_normal')
     
-            model = sm.tsa.arima.ARIMA(train, order=((0, 1, 1)))
+            model = sm.tsa.arima.ARIMA(train['en-dan'], order=((0, 1, 1)))
             result = model.fit(disp=0)
-            forecast = result.forecast(len(test))
+            forecast = result.forecast(len(test['en-dan']))
     
     
             RMSE = float(format(np.sqrt(mean_squared_error(test, forecast)),'.3f'))
