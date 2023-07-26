@@ -1,4 +1,5 @@
 import subprocess
+import numpy as np  # Add this line to import NumPy
 
 try:
     import matplotlib.pyplot as plt
@@ -12,7 +13,6 @@ except AttributeError as e:
 
 import streamlit as st
 import pandas as pd
-import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from statsmodels.tsa.arima_model import ARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAX
