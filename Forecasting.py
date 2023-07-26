@@ -88,7 +88,7 @@ def main():
             transformed_data = boxcox(col, lmbda=lmbda_value)
             df_normal = pd.Series(transformed_data, index=indx, name='col_normal')
     
-            model = sm.tsa.arima.ARIMA(train, order=((0, 1, 1)))
+            model = sm.tsa.arima.ARIMA(train.col_normal, order=((0, 1, 1)))
             result = model.fit()
             forecast = result.forecast(len(test))
     
