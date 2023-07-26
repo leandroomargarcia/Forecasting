@@ -57,10 +57,10 @@ def main():
             plt.figure(figsize=(10, 7))
             plt.plot(train ,label='train data')
             # Calcular los intervalos de confianza
-            forecast_test_aux = forecast_series.get_forecast(steps=58)
+            forecast_test_aux = forecast.get_forecast(steps=58)
             e_conf_int = forecast_test_aux.conf_int()
             # Graficar la predicción como una línea
-            plt.plot(forecast_series,color='red', label='predicted')
+            plt.plot(forecast,color='red', label='predicted')
             plt.plot(test, label='test data')
             dates_test = test.index
             #plt.fill_between(dates_test, e_conf_int['lower en-dan'], e_conf_int['upper en-dan'],color='lightgray', alpha=0.3);
@@ -103,7 +103,7 @@ def main():
             st.write("MAE: ", MAE)
             st.write("r2: ", r2)
     
-            plot_metrics(metrics, model, df, train, test, forecast)
+            plot_metrics(metrics, model, df_normal, train, test, forecast)
 
 if __name__ == '__main__':
     main() 
