@@ -1,5 +1,5 @@
 import subprocess
-import numpy as np  # Add this line to import NumPy
+import numpy as np 
 
 try:
     import matplotlib.pyplot as plt
@@ -91,24 +91,27 @@ def main():
             # Aplicar la transformación de Box-Cox a la columna a_transformar
             indx = df.index
             col = df.values
-            lmbda_value=0.5
-            transformed_data = boxcox(col,lmbda=lmbda_value)
+            lmbda_value = 0.5
+            transformed_data = boxcox(col, lmbda=lmbda_value)
             df_normal = pd.Series(transformed_data, index=indx, name='col_normal')
-
-            model = sm.tsa.arima.ARIMA(train, order=((0,1,1)))
+    
+            model = sm.tsa.arima.ARIMA(train, order=((0, 1, 1)))
             result = model.fit(disp=0)
             forecast = result.forecast(len(test))
-
+    
+            # Use finfo instead of MachAr
+            EPS = np.finfo(np.float64).eps
+    
             RMSE = float(format(np.sqrt(mean_squared_error(test, forecast)),'.3f'))
             MSE = mean_squared_error(test, forecast)
             MAE = mean_absolute_error(test, forecast)
             r2 = r2_score(test, forecast)
-
+    
             st.write("RMSE: ", RMSE)
             st.write("MSE: ", MSE)
             st.write("MAE: ", MAE)
             st.write("r2: ", r2)
-
+    
             plot_metrics(metrics, model, df, train, test, forecast)
 
 if __name__ == '__main__':
