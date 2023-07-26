@@ -65,7 +65,7 @@ def main():
             plt.plot(forecast_series,color='red', label='predicted')
             plt.plot(test, label='test data')
             dates_test = test.index
-            plt.fill_between(dates_test, e_conf_int['lower en-dan'], e_conf_int['upper en-dan'],color='lightgray', alpha=0.3);
+            #plt.fill_between(dates_test, e_conf_int['lower en-dan'], e_conf_int['upper en-dan'],color='lightgray', alpha=0.3);
             plt.legend()
             plt.title('Serie temporal')
 
