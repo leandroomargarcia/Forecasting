@@ -47,7 +47,7 @@ def main():
         if 'Time Series Decomposition' in metrics_list:
             # Descomposicion de la serie temporal Energy-Danceability
             rcParams['figure.figsize'] = 11, 11
-            decomposeEnergy = sm.tsa.seasonal_decompose(data)
+            decomposeEnergy = sm.tsa.seasonal_decompose(data['en-dan'])
             decomposeEnergy.plot()
             plt.title("Time Series Decomposition")
             st.pyplot()
