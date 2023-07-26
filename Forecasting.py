@@ -88,9 +88,9 @@ def main():
             df_normal = pd.Series(transformed_data, index=indx, name='col_normal')
             train, test = recortar_serie(df_normal) # CV
     
-            model = sm.tsa.arima.ARIMA(train.col_normal, order=((0, 1, 1)))
+            model = sm.tsa.arima.ARIMA(train, order=((0, 1, 1)))
             result = model.fit()
-            forecast = result.forecast(len(test.col_normal))
+            forecast = result.forecast(len(test))
     
     
             RMSE = float(format(np.sqrt(mean_squared_error(test, forecast)),'.3f'))
