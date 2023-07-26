@@ -23,7 +23,7 @@ def main():
     st.markdown("What's the future of the music?")
     st.sidebar.markdown("What's the future of the music")
 
-    @st.cache
+    @st.cache_data(allow_output_mutation=True)
     def load_data():
         data = pd.read_csv('data.csv')
         label = LabelEncoder()
@@ -31,7 +31,7 @@ def main():
             data[col] = label.fit_transform(data[col])
         return data
 
-    @st.cache  
+    @st.cache_data(allow_output_mutation=True)  
     def recortar_serie(data, percentage=(70, 30)):
         # Ordenar la serie cronológicamente
         serie_sorted = data.sort_index()
