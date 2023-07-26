@@ -5,11 +5,6 @@ try:
     import matplotlib.pyplot as plt
 except ImportError:
     subprocess.check_call(['pip', 'install', 'matplotlib'])
-try:
-    EPS = np.MachAr().eps
-except AttributeError as e:
-    print("Error accessing attribute in numpy:", e)
-    raise  # Re-raise the exception to see the full traceback
 
 import streamlit as st
 import pandas as pd
@@ -99,8 +94,6 @@ def main():
             result = model.fit(disp=0)
             forecast = result.forecast(len(test))
     
-            # Use finfo instead of MachAr
-            EPS = np.finfo(np.float64).eps
     
             RMSE = float(format(np.sqrt(mean_squared_error(test, forecast)),'.3f'))
             MSE = mean_squared_error(test, forecast)
