@@ -14,9 +14,6 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 import statsmodels.api as sm
 from sklearn.preprocessing import LabelEncoder
 from scipy.stats import boxcox
-from matplotlib import rcParams
-
-
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
