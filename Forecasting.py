@@ -4,6 +4,11 @@ try:
     import matplotlib.pyplot as plt
 except ImportError:
     subprocess.check_call(['pip', 'install', 'matplotlib'])
+try:
+    EPS = np.MachAr().eps
+except AttributeError as e:
+    print("Error accessing attribute in numpy:", e)
+    raise  # Re-raise the exception to see the full traceback
 
 import streamlit as st
 import pandas as pd
