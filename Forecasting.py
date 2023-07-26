@@ -69,7 +69,6 @@ def main():
 
 
     df = load_data()
-    train, test = recortar_serie(df)
     st.sidebar.subheader("Choose the Model")
     classifier = st.sidebar.selectbox(
         "Classifier", 
@@ -87,10 +86,11 @@ def main():
             lmbda_value = 0.5
             transformed_data = boxcox(col, lmbda=lmbda_value)
             df_normal = pd.Series(transformed_data, index=indx, name='col_normal')
+            train, test = recortar_serie(df_normal) # CV
     
             model = sm.tsa.arima.ARIMA(train.col_normal, order=((0, 1, 1)))
             result = model.fit()
-            forecast = result.forecast(len(test))
+            forecast = result.forecast(len(test.col_normal))
     
     
             RMSE = float(format(np.sqrt(mean_squared_error(test, forecast)),'.3f'))
