@@ -43,7 +43,7 @@ def main():
         test = serie_sorted.iloc[idx_70:]
         return train, test
     
-    def plot_metrics(metrics_list, model,data, train, test, forecast_series):
+    def plot_metrics(metrics_list, model,data, train, test, forecast):
         if 'Time Series Decomposition' in metrics_list:
             # Descomposicion de la serie temporal Energy-Danceability
             rcParams['figure.figsize'] = 11, 11
