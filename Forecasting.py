@@ -65,6 +65,7 @@ def main():
             #plt.fill_between(dates_test, e_conf_int['lower en-dan'], e_conf_int['upper en-dan'],color='lightgray', alpha=0.3);
             plt.legend()
             plt.title('Serie temporal')
+            st.pyplot()
 
 
     df = load_data()
