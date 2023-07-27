@@ -43,7 +43,7 @@ def main():
         test = serie_sorted.iloc[idx_70:]
         return train, test
     
-    def plot_metrics(metrics_list, model,data, train, test, forecast_series, class_names):
+    def plot_metrics(metrics_list, model,data, train, test, forecast_series):
         if 'Time Series Decomposition' in metrics_list:
             # Descomposicion de la serie temporal Energy-Danceability
             rcParams['figure.figsize'] = 11, 11
@@ -55,7 +55,7 @@ def main():
         if 'Forecasting' in metrics_list:
             # Plot past
             plt.figure(figsize=(10, 7))
-            plt.plot(train ,label='train data')
+            plt.plot(train['en-dan'] ,label='train data')
             # Calcular los intervalos de confianza
             forecast_test_aux = forecast.get_forecast(steps=58)
             e_conf_int = forecast_test_aux.conf_int()
