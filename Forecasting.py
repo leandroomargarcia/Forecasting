@@ -104,6 +104,7 @@ def main():
             st.write("r2: ", r2)
     
             plot_metrics(metrics, model, df_normal, train, test, forecast)
+            
     if classifier == 'SARIMAX':
         metrics = st.sidebar.multiselect("What Graph to plot?", ('Time Series Decomposition', 'Forecasting'))
 
@@ -121,7 +122,7 @@ def main():
             # Determine the seasonal order
             seasonal_order = (0, 1, 1, 4)  # SARIMA(p, d, q, seasonal_period)
             # Fit the SARIMA model
-            model = SARIMAX(df_train_en_dan, order=(1, 1, 1), seasonal_order=seasonal_order)
+            model = SARIMAX(train, order=(1, 1, 1), seasonal_order=seasonal_order)
             result = model.fit()
             forecast = result.forecast(len(test))    
     
