@@ -57,7 +57,7 @@ def main():
             plt.figure(figsize=(10, 7))
             plt.plot(train ,label='train data')
             # Calcular los intervalos de confianza
-            e_conf_int = forecast.conf_int()
+            #e_conf_int = forecast.conf_int()
             # Graficar la predicción como una línea
             plt.plot(forecast,color='red', label='predicted')
             plt.plot(test, label='test data')
