@@ -55,7 +55,7 @@ def main():
         if 'Forecasting' in metrics_list:
             # Plot past
             plt.figure(figsize=(10, 7))
-            plt.plot(train['en-dan'] ,label='train data')
+            plt.plot(train ,label='train data')
             # Calcular los intervalos de confianza
             forecast_test_aux = forecast.get_forecast(steps=58)
             e_conf_int = forecast_test_aux.conf_int()
