@@ -104,7 +104,7 @@ def main():
             st.write("r2: ", r2)
     
             plot_metrics(metrics, model, df_normal, train, test, forecast)
-         if classifier == 'SARIMAX':
+    if classifier == 'SARIMAX':
         metrics = st.sidebar.multiselect("What Graph to plot?", ('Time Series Decomposition', 'Forecasting'))
 
         if st.sidebar.button("Predict", key='Predict'):
