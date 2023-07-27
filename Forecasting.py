@@ -14,6 +14,8 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 import statsmodels.api as sm
 from sklearn.preprocessing import LabelEncoder
 from scipy.stats import boxcox
+import matplotlib.pyplot as plt
+plt.rcParams['figure.figsize'] = 11, 11
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
